@@ -2,6 +2,8 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+      var host = "http://localhost:3000";
+      const categoriesEndpoint = "/toothPasteCategories";
       $(document).ready(function () {
         $("#categories").click(function () {
           $.getJSON("http://localhost:3000/toothPasteCategories", function (
@@ -19,8 +21,7 @@
               li.appendChild(a);
               a.innerHTML = value.name;
               index = index + 1;
-              a.href =
-                "http://localhost:3000/toothPasteCategories/" + index;
+              a.href = host + categoriesEndpoint + "/" + index;
             });
           });
         });

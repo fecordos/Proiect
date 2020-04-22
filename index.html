@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#categories").click(function () {
+          $.getJSON("http://localhost:3000/toothPasteCategories", function (
+            data
+          ) {
+            var section = document.createElement("section");
+            var ul = document.createElement("ul");
+
+            document.body.appendChild(section);
+            section.appendChild(ul);
+            $.each(data, function (index, value) {
+              var li = document.createElement("li");
+              ul.appendChild(li);
+              var a = document.createElement("a");
+              li.appendChild(a);
+              a.innerHTML = value.name;
+              index = index + 1;
+              a.href =
+                "http://localhost:3000/toothPasteCategories/" + index;
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="menu" tabindex="0">
+      <button id="categories">
+        Afiseaza categorii
+      </button>
+    </nav>
+  </body>
+</html>

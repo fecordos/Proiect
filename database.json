@@ -1,0 +1,178 @@
+{
+    "toothPasteCategories":[
+        {
+            "id":1,
+            "name":"pentru albire"
+        },
+        {
+            "id":2,
+            "name":"pentru ingrijirea gingiilor"
+        },
+        {
+            "id":3,
+            "name":"anti-tartru"
+        },
+        {
+            "id":4,
+            "name":"pentru dinti sensibili"
+        },
+        {
+            "id":5,
+            "name":"pentru probleme de ortodontie"
+        }
+    ],
+
+    "products":[
+        {
+            "id":1,
+            "toothPasteCategoryId":1,
+            "brand":"Colgate",
+            "type":"Max White Optic",
+            "quantity":"75ml",
+            "price": 10.99,  
+            "flavor":"menta", 
+            "forKids": true  
+        },
+        {
+            "id":2,
+            "toothPasteCategoryId":1,
+            "brand":"Colgate",
+            "type":"Advanced White Charcoal",
+            "quantity":"100ml",
+            "price": 11.99,  
+            "flavor":"menta",            
+            "forKids":false  
+        },
+        {
+            "id":3,
+            "toothPasteCategoryId":1,
+            "brand":"Blend-a-Med ",
+            "type":"3D White",
+            "quantity":"140ml",
+            "price": 16.35,  
+            "flavor":"menta", 
+            "forKids": true  
+        },
+        {
+            "id":4,
+            "toothPasteCategoryId":2,
+            "brand":"Himalaya",
+            "type":"Mint Fresh",
+            "quantity":"75ml",
+            "price": 21.35,  
+            "flavor":"menta", 
+            "forKids":false  
+        },
+        {
+            "id":5,
+            "toothPasteCategoryId":2,
+            "brand":"AslaMed",
+            "type":"Farmec",
+            "quantity":"75ml",
+            "price": 10.25,  
+            "flavor":"musetel", 
+            "forKids":true  
+        },
+        {
+            "id":6,
+            "toothPasteCategoryId":2,
+            "brand":"Lacalut",
+            "type":"Aktiv Herbal",
+            "quantity":"75ml",
+            "price": 21.35,  
+            "flavor":"plante", 
+            "forKids":false  
+        },
+        {
+            "id":7,
+            "toothPasteCategoryId":3,
+            "brand":" Pasta del Capitano ",
+            "type":"Antitartaro ",
+            "quantity":"75ml",
+            "price": 9.95, 
+            "flavor":"menta", 
+            "forKids":false  
+        },
+        {
+            "id":8,
+            "toothPasteCategoryId":3,
+            "brand":"Colgate",
+            "type":"Anti-Tartru",
+            "quantity":"100ml",
+            "price": 12.75,  
+            "flavor":"lamaie", 
+            "forKids":false  
+        },
+        {
+            "id":9,
+            "toothPasteCategoryId":3,
+            "brand":"Cattier",
+            "type":"Dentargile",
+            "quantity":"75ml",
+            "price": 20.35,  
+            "flavor":"plante", 
+            "forKids":false  
+        },
+        {
+            "id":10,
+            "toothPasteCategoryId":4,
+            "brand":"Parodontax",
+            "type":"Herbal Fresh",
+            "quantity":"75ml",
+            "price": 17.15,  
+            "flavor":"eucalipt", 
+            "forKids":false  
+        },
+        {
+            "id":11,
+            "toothPasteCategoryId":4,
+            "brand":"Dentaid",
+            "type":"Desensin",
+            "quantity":"75ml",
+            "price": 23.35,  
+            "flavor":"menta", 
+            "forKids":false  
+        },
+        {
+            "id":12,
+            "toothPasteCategoryId":4,
+            "brand":"Colgate",
+            "type":null,
+            "quantity":"50ml",
+            "price": 5.35,  
+            "flavor":"bubble gum", 
+            "forKids":true  
+        },
+        {
+            "id":13,
+            "toothPasteCategoryId":5,
+            "brand":"Dentaid",
+            "type":"Vitis Orthodontic",
+            "quantity":"100ml",
+            "price": 25.45,  
+            "flavor":"menta", 
+            "forKids":false  
+        },
+        {
+            "id":14,
+            "toothPasteCategoryId":5,
+            "brand":"Dentaid",
+            "type":"Interprox Gel",
+            "quantity":"20ml",
+            "price": 15.35,  
+            "flavor":"menta", 
+            "forKids":false  
+        },{
+            "id":15,
+            "toothPasteCategoryId":5,
+            "brand":"GUM Ortho",
+            "type":null,
+            "quantity":"75ml",
+            "price": 29.00,  
+            "flavor":"menta", 
+            "forKids":false  
+        }
+    ]
+
+
+}

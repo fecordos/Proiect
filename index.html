@@ -4,36 +4,43 @@
     <script>
       var host = "http://localhost:3000";
       const categoriesEndpoint = "/toothPasteCategories";
+
       $(document).ready(function () {
         $("#categories").click(function () {
-          $.getJSON("http://localhost:3000/toothPasteCategories", function (
-            data
-          ) {
-            var section = document.createElement("section");
-            var ul = document.createElement("ul");
+          $.getJSON("http://localhost:3000/toothPasteCategories")
+            .done(function (data) {
+              var section = document.createElement("section");
+              section.setAttribute("class", "menu");
+              var ul = document.createElement("ul");
 
-            document.body.appendChild(section);
-            section.appendChild(ul);
-            $.each(data, function (index, value) {
-              var li = document.createElement("li");
-              ul.appendChild(li);
-              var a = document.createElement("a");
-              li.appendChild(a);
-              a.innerHTML = value.name;
-              index = index + 1;
-              a.href = host + categoriesEndpoint + "/" + index;
+              document.body.appendChild(section);
+              section.appendChild(ul);
+
+              $.each(data, function (index, value) {
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+
+                ul.appendChild(li);
+                li.appendChild(a);
+
+                a.innerHTML = value.name;
+                index = index + 1;
+                a.href = host + categoriesEndpoint + "/" + index;
+              });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+              var err = textStatus + ", " + error;
+              console.log("Request failed: " + err);
             });
-          });
         });
       });
     </script>
   </head>
 
   <body>
-    <nav class="menu" tabindex="0">
-      <button id="categories">
-        Afiseaza categorii
-      </button>
-    </nav>
+    <button id="categories">Afiseaza categorii</button>
+    <div style="float: right;">
+      <article><a id="article"></a></article>
+    </div>
   </body>
 </html>

@@ -25,6 +25,7 @@
         {
             "id": 1,
             "toothPasteCategoryId": 1,
+            "image":"id1.jpg",
             "brand": "Colgate",
             "type": "Max White Optic",
             "quantity": "75ml",
@@ -35,6 +36,7 @@
         {
             "id": 2,
             "toothPasteCategoryId": 1,
+            "image":"id2.jpg",
             "brand": "Colgate",
             "type": "Advanced White Charcoal",
             "quantity": "100ml",
@@ -45,6 +47,7 @@
         {
             "id": 3,
             "toothPasteCategoryId": 1,
+            "image":"id3.jpg",
             "brand": "Blend-a-Med ",
             "type": "3D White",
             "quantity": "140ml",
@@ -55,6 +58,7 @@
         {
             "id": 4,
             "toothPasteCategoryId": 2,
+            "image":"id4.jpg",
             "brand": "Himalaya",
             "type": "Mint Fresh",
             "quantity": "75ml",
@@ -65,6 +69,7 @@
         {
             "id": 5,
             "toothPasteCategoryId": 2,
+            "image":"id5.jpg",
             "brand": "AslaMed",
             "type": "Farmec",
             "quantity": "75ml",
@@ -75,6 +80,7 @@
         {
             "id": 6,
             "toothPasteCategoryId": 2,
+            "image":"id6.png",
             "brand": "Lacalut",
             "type": "Aktiv Herbal",
             "quantity": "75ml",
@@ -85,6 +91,7 @@
         {
             "id": 7,
             "toothPasteCategoryId": 3,
+            "image":"id7.png",
             "brand": " Pasta del Capitano ",
             "type": "Antitartaro ",
             "quantity": "75ml",
@@ -95,6 +102,7 @@
         {
             "id": 8,
             "toothPasteCategoryId": 3,
+            "image":"id8.jpg",
             "brand": "Colgate",
             "type": "Anti-Tartru",
             "quantity": "100ml",
@@ -105,6 +113,7 @@
         {
             "id": 9,
             "toothPasteCategoryId": 3,
+            "image":"id9.jpg",
             "brand": "Cattier",
             "type": "Dentargile",
             "quantity": "75ml",
@@ -115,6 +124,7 @@
         {
             "id": 10,
             "toothPasteCategoryId": 4,
+            "image":"id10.jpg",
             "brand": "Parodontax",
             "type": "Herbal Fresh",
             "quantity": "75ml",
@@ -125,6 +135,7 @@
         {
             "id": 11,
             "toothPasteCategoryId": 4,
+            "image":"id11.jpg",
             "brand": "Dentaid",
             "type": "Desensin",
             "quantity": "75ml",
@@ -135,6 +146,7 @@
         {
             "id": 12,
             "toothPasteCategoryId": 4,
+            "image":"id12.jpg",
             "brand": "Colgate",
             "type": null,
             "quantity": "50ml",
@@ -145,6 +157,7 @@
         {
             "id": 13,
             "toothPasteCategoryId": 5,
+            "image":"id13.jpg",
             "brand": "Dentaid",
             "type": "Vitis Orthodontic",
             "quantity": "100ml",
@@ -155,6 +168,7 @@
         {
             "id": 14,
             "toothPasteCategoryId": 5,
+            "image":"id14.jpg",
             "brand": "Dentaid",
             "type": "Interprox Gel",
             "quantity": "20ml",
@@ -165,6 +179,7 @@
         {
             "id": 15,
             "toothPasteCategoryId": 5,
+            "image":"id15.jpg",
             "brand": "GUM Ortho",
             "type": null,
             "quantity": "75ml",

@@ -1,0 +1,117 @@
+<html>
+    <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    //functia pentru primul SELECT
+    function cerereGETCategorii(){
+
+        path = "http://localhost:4000/toothPasteCategories";
+
+        $(document).ready(function(){
+            $.getJSON(path)
+            .done(function (data) {
+              var section = document.createElement("section");
+              section.setAttribute("class", "menu");
+              var ul = document.createElement("ul");
+
+              document.body.appendChild(section);
+              section.appendChild(ul);
+
+              $.each(data, function (index, value) {
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+
+                ul.appendChild(li);
+                li.appendChild(a);
+
+                a.innerHTML = value.name;
+                index = index + 1;
+                a.href = path + "/" + index;
+              });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+              var err = textStatus + ", " + error;
+              console.log("Request failed: " + err);
+            });
+        });
+    }
+
+    //functia pentru al doilea SELECT
+    function cerereGETProduse(id){
+        
+        adresa = "http://localhost:4000/products?toothPasteCategoryId=" + id; //id-ul categoriei preluat din front-end
+
+        $(document).ready(function(){
+            $.getJSON(adresa, function(raspuns){
+               $.each(raspuns, function(indice, produs){
+
+                   continutDeAfisat = "<div style='border: 2px solid black;'>" + 
+                   "<br> Brand: " + produs.brand + 
+                   "<br> Tip: " + produs.type + 
+                   "<img src='poze produse/" + produs.image + "' alt='imagine produs' width='150' heigth='150' style='border: 2px solid black;'/> <br>" + 
+                   "<br> Cantitate: " + produs.quantity + 
+                   "<br> Preț: " + produs.price + 
+                   "<br> Aromă: " + produs.flavor + 
+                   "<br> Recomandată copiilor: " + produs.forKids + "</div><br>";
+
+                    $(continutDeAfisat).appendTo("#zonaB");
+            })
+        })
+
+        });
+        
+    }
+
+    //functia pentru DELETE produs
+    function cerereDELETEProdus(produsId){ 
+
+
+    }
+
+    //functia pentru INSERT produs
+    function cererePOSTProdus(categorieId){   //id-ul categoriei preluat din front-end
+        adresa = "http://localhost:4000/products";
+
+        dateDeTrimis = $("form").serialize();
+        $.post(adresa, dateDeTrimis);
+
+    }
+    </script>
+    </head>
+
+    <body>
+        <button onclick="cerereGETCategorii()">Afiseaza categorii</button> <br> <br>
+
+        <div id="zonaA" style="border: 2px solid red; padding: 12px;">
+            <button id=5 onclick="cerereGETProduse(this.id)">apasa</button>
+        </div>
+
+
+        <div id="zonaB" style="border: 2px solid yellow; padding: 12px;">
+            <h2 style="text-align: center;">Lista produselor:</h2> <br> <br>
+            <div id="denumireProdus"></div>
+        </div>
+
+
+        <div id="zonaC" style="border: 2px solid blue;">
+            <h2>Introduceți informațiile despre produs:</h2>
+            <hr>
+            <br>
+            <form id="form">
+
+                <input type="text" hidden name="toothPasteCategoryId"> <!--id-ul categoriei trebuie preluat -->
+
+                Brand: <input type="text" name="brand"> <br>
+                Tip: <input type="text" name="type"> <br>
+                Cantitate: <input type="text" name="quantity"> <br>
+                Preț: <input type="text" name="price"> <br>
+                Aromă: <input type="text" name="flavor"> <br>
+                Recomandată copiilor: <input type="text" name="forKids"> <br> <br>
+
+                <button onblur="cererePOSTProdus()">Trimite</button>
+
+            </form>
+        </div>
+    </body>
+</html>

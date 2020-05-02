@@ -1,7 +1,6 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -10,7 +9,6 @@
     />
     
     <script type="text/javascript">
-//functia pentru primul SELECT
 function cerereGETCategorii() {
         path = "http://localhost:4000/toothPasteCategories";
 
@@ -39,7 +37,6 @@ function cerereGETCategorii() {
         });
       }
 
-      //functia pentru al doilea SELECT
       function cerereGETProduse(id) {
         adresa = "http://localhost:4000/products?toothPasteCategoryId=" + id; //id-ul categoriei preluat din front-end
 
@@ -47,22 +44,21 @@ function cerereGETCategorii() {
           $.getJSON(adresa, function (raspuns) {
             $.each(raspuns, function (indice, produs) {
               continutDeAfisat =
-                "<div style='border: 2px solid black;'>" +
-                "<br> Brand: " +
-                produs.brand +
-                "<br> Tip: " +
-                produs.type +
-                "<img src='poze produse/" +
-                produs.image +
-                "' alt='imagine produs' width='150' heigth='150' style='border: 2px solid black;'/> <br>" +
-                "<br> Cantitate: " +
-                produs.quantity +
-                "<br> Preț: " +
-                produs.price +
-                "<br> Aromă: " +
-                produs.flavor +
-                "<br> Recomandată copiilor: " +
-                produs.forKids +
+                "<div class='card mb-3' style='max-width: 540px'>" +
+                  "<div class='row no-gutters'>" +
+        "<div class='col-md-4'>" +
+          "<img src='poze produse/" + produs.image + "' class='card-img' alt='imagine produs' />" +
+        "</div>" +
+        "<div class='col-md-8'>" +
+          "<div class='card-body'>" +
+            "<h5 class='card-title'>" + produs.brand + produs.type + "</h5>" +
+            "<p class='card-text'> Cantitate: " + produs.quantity +"</p>" +
+            "<p class='card-text'> Aroma: " + produs.flavor +"</p>" +
+            "<p class='card-text'> Recomandata copiilor: " + produs.forKids +"</p>" +
+            "<p class='card-text'> Pret: " + produs.price +"</p>" +
+          "</div>" +
+        "</div>" +
+      "</div>" +
                 "</div><br>";
 
               $(continutDeAfisat).appendTo("#zonaB");
@@ -71,10 +67,8 @@ function cerereGETCategorii() {
         });
       }
 
-      //functia pentru DELETE produs
       function cerereDELETEProdus(produsId) {}
 
-      //functia pentru INSERT produs
       function cererePOSTProdus(categorieId) {
         //id-ul categoriei preluat din front-end
         adresa = "http://localhost:4000/products";
@@ -88,9 +82,9 @@ function cerereGETCategorii() {
   </head>
 
   <body>
-    <body>
+    <body onload="cerereGETCategorii();cerereGETProduse(5);">
     <button onclick="cerereGETCategorii()">Afiseaza categorii</button> <br />
-
+    <button id="5" onclick="cerereGETProduse(this.id)">apasa</button>
     <table>
       <tr>
         <th scope="col">
@@ -99,26 +93,7 @@ function cerereGETCategorii() {
     </div>
 
     <th scope="col">
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img src="..." class="card-img" alt="..." />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+      <div id="zonaB"></div>
   </th>
 </tr>
   </table>

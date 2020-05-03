@@ -1,183 +1,240 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
     />
-    
+
     <script type="text/javascript">
-function cerereGETCategorii() {
-        path = "http://localhost:4000/toothPasteCategories";
+        function cerereGETCategorii() {
+            path = "http://localhost:4000/toothPasteCategories";
 
-        $(document).ready(function () {
-          $.getJSON(path)
-            .done(function (data) {
-              var content = "<ul class='nav flex-column'>";
+            $(document).ready(function () {
+                $.getJSON(path)
+                    .done(function (data) {
+                        var content = "<ul class='nav flex-column'>";
 
-              $.each(data, function (index, value) {
-                content +=
-                  "<li class='nav-item'><a class='nav-link' href='" +
-                  path +
-                  "/" +
-                  ++index +
-                  "'>" +
-                  value.name +
-                  "</a></li>";
-              });
-              content += "</ul>";
-              $(content).appendTo("#zonaA");
-            })
-            .fail(function (jqxhr, textStatus, error) {
-              var err = textStatus + ", " + error;
-              console.log("Request failed: " + err);
+                        $.each(data, function (index, value) {
+                            content +=
+                                "<li class='nav-item'><a class='nav-link' href='" +
+                                path +
+                                "/" +
+                                ++index +
+                                "'>" +
+                                value.name +
+                                "</a></li>";
+                        });
+                        content += "</ul>";
+                        $(content).appendTo("#zonaA");
+                    })
+                    .fail(function (jqxhr, textStatus, error) {
+                        var err = textStatus + ", " + error;
+                        console.log("Request failed: " + err);
+                    });
             });
-        });
-      }
+        }
 
-      function cerereGETProduse(id) {
-        adresa = "http://localhost:4000/products?toothPasteCategoryId=" + id; //id-ul categoriei preluat din front-end
+        function cerereGETProduse(categoryId) {
+            adresa = "http://localhost:4000/products?toothPasteCategoryId=" + categoryId;
 
-        $(document).ready(function () {
-          $.getJSON(adresa, function (raspuns) {
-            $.each(raspuns, function (indice, produs) {
-              continutDeAfisat =
-                "<div class='card mb-3' style='max-width: 540px'>" +
-                  "<div class='row no-gutters'>" +
-        "<div class='col-md-4'>" +
-          "<img src='poze produse/" + produs.image + "' class='card-img' alt='imagine produs' />" +
-        "</div>" +
-        "<div class='col-md-8'>" +
-          "<div class='card-body'>" +
-            "<h5 class='card-title'>" + produs.brand + produs.type + "</h5>" +
-            "<p class='card-text'> Cantitate: " + produs.quantity +"</p>" +
-            "<p class='card-text'> Aroma: " + produs.flavor +"</p>" +
-            "<p class='card-text'> Recomandata copiilor: " + produs.forKids +"</p>" +
-            "<p class='card-text'> Pret: " + produs.price +"</p>" +
-          "</div>" +
-        "</div>" +
-      "</div>" +
-                "</div><br>";
+            $(document).ready(function () {
+                $.getJSON(adresa, function (raspuns) {
+                    $.each(raspuns, function (indice, produs) {
+                        continutDeAfisat =
+                            "<div class='card mb-3' style='max-width: 540px'>" +
+                            "<div class='row no-gutters'>" +
+                            "<div class='col-md-4'>" +
+                            "<img src='poze produse/" + produs.image + "' class='card-img' alt='imagine produs' />" +
+                            "</div>" +
+                            "<div class='col-md-8'>" +
+                            "<div class='card-body'>" +
+                            "<h5 class='card-title'>" + produs.brand + ' ' + produs.type + "</h5>" +
+                            "<p class='card-text'> Cantitate: " + produs.quantity + "</p>" +
+                            "<p class='card-text'> Aroma: " + produs.flavor + "</p>" +
+                            "<p class='card-text'> Recomandata copiilor: " + produs.forKids + "</p>" +
+                            "<p class='card-text'> Pret: " + produs.price + "</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>" +
+                            "<button onclick=cerereDELETEProdus(" + produs.id + ")>Sterge</button>"
+                        "</div><br>";
 
-              $(continutDeAfisat).appendTo("#zonaB");
+                        $(continutDeAfisat).appendTo("#zonaB");
+                    });
+                });
             });
-          });
-        });
-      }
+        }
 
-      function cerereDELETEProdus(produsId) {}
+        function cerereDELETEProdus(produsId) {
+            path = "http://localhost:4000/products/" + produsId;
 
-      function cererePOSTProdus(categorieId) {
-        //id-ul categoriei preluat din front-end
-        adresa = "http://localhost:4000/products";
+            config = {
+                url: path,
+                type: "DELETE",
+                success: function (result) {
+                    $("#tinta").html("Stergere cu succes a produsului cu id=" + raspuns['id']);
+                    cerereGETProduse(6);
+                }
+            }
 
-        dateDeTrimis = $("form").serialize();
-        $.post(adresa, dateDeTrimis);
-      }
+            $.ajax(config);
+        }
 
+
+        function cererePOSTProdus(categorieId) {
+
+            path = "http://localhost:4000/products?toothPasteCategoryId=" + categorieId;
+
+            let brandId = $("#brand");
+            let typeId = $("#type");
+            let quantityId = $("#quantity");
+            let forKidsId = $("#forKids");
+            let flavorId = $("#flavor");
+            let priceId = $("#price");
+
+
+            var brand = brandId.val();
+            var type = typeId.val();
+            var quantity = quantityId.val();
+            var price = priceId.val();
+            var flavor = flavorId.val();
+            var forKids = forKidsId.val();
+            var toothpasteCategoryId = categorieId;
+            var image = "null";
+
+            var jsonData = {
+                brand: brand, type: type, quantity: quantity,
+                price: price, flavor: flavor, forKids: forKids,
+                toothpasteCategoryId: toothpasteCategoryId, image: image
+            };
+
+            config = {
+                url: path,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(jsonData),
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    brandId.val("");
+                    typeId.val("");
+                    quantityId.val("");
+                    priceId.val("");
+                    flavorId.val("");
+                    forKidsId.val("");
+                },
+                failure: function (errMsg) {
+                    alert(errMsg);
+                }
+            };
+
+            $.ajax(config);
+        }
 
     </script>
-  </head>
+</head>
 
-  <body>
-    <body onload="cerereGETCategorii();cerereGETProduse(5);">
-    <button onclick="cerereGETCategorii()">Afiseaza categorii</button> <br />
-    <button id="5" onclick="cerereGETProduse(this.id)">apasa</button>
-    <table>
-      <tr>
+<body>
+<body onload="cerereGETCategorii();cerereGETProduse(6);">
+<button onclick="cerereGETCategorii()">Afiseaza categorii</button>
+<br/>
+<button id="6" onclick="cerereGETProduse(this.id)">apasa</button>
+<table>
+    <tr>
         <th scope="col">
-    <div id="zonaA">
-    </th>
+            <div id="zonaA">
+        </th>
+        </div>
+
+        <th scope="col">
+            <div id="zonaB"></div>
+        </th>
+    </tr>
+</table>
+
+<form>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="brand"
+                    placeholder="Brand"
+            />
+        </div>
     </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="type"
+                    placeholder="Tip"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="quantity"
+                    placeholder="Cantitate"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="price"
+                    placeholder="Pret"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="flavor"
+                    placeholder="Aroma"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="forKids"
+                    placeholder="Recomandata copiilor"
+            />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" onmouseenter="cererePOSTProdus(6)">Trimite</button>
+</form>
 
-    <th scope="col">
-      <div id="zonaB"></div>
-  </th>
-</tr>
-  </table>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"
+></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-    <form>
-      <div class="form-group">
-        <div class="col-sm-6">
-          <input
-            type="text"
-            class="form-control"
-            id="formGroupBrand"
-            placeholder="Brand"
-          />
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-6">
-          <input
-            type="text"
-            class="form-control"
-            id="formGroupTip"
-            placeholder="Tip"
-          />
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-6">
-          <input
-            type="text"
-            class="form-control"
-            id="formGroupCantitate"
-            placeholder="Cantitate"
-          />
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-6">
-          <input
-            type="text"
-            class="form-control"
-            id="formGroupPret"
-            placeholder="Pret"
-          />
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-6">
-          <input
-            type="text"
-            class="form-control"
-            id="formGroupAroma"
-            placeholder="Aroma"
-          />
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-6">
-          <input
-            type="text"
-            class="form-control"
-            id="formGroupRecomandataCopiilor"
-            placeholder="Recomandata copiilor"
-          />
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Trimite</button>
-    </form>
-
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-  </body>
+</body>
 </html>

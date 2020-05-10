@@ -190,6 +190,17 @@
       "price": 29,
       "flavor": "menta",
       "forKids": false
+    },
+    {
+      "brand": "dasdas",
+      "type": "dasda",
+      "quantity": "dasdas",
+      "price": "dsadas",
+      "flavor": "ddsadas",
+      "forKids": "dsada",
+      "toothPasteCategoryId": 6,
+      "image": "null",
+      "id": 16
     }
   ]
 }

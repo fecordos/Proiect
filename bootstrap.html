@@ -75,8 +75,9 @@
                 url: path,
                 type: "DELETE",
                 success: function (result) {
-                    $("#tinta").html("Stergere cu succes a produsului cu id=" + raspuns['id']);
+                    console.log("Stergere cu succes a produsului cu id -ul " + produsId);
                     cerereGETProduse(6);
+                    location.reload();
                 }
             }
 
@@ -125,9 +126,10 @@
                     priceId.val("");
                     flavorId.val("");
                     forKidsId.val("");
+                    location.reload();
                 },
                 failure: function (errMsg) {
-                    alert(errMsg);
+                    console.log("The data was not sent!" + errMsg);
                 }
             };
 

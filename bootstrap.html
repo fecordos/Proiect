@@ -19,11 +19,8 @@
 
                         $.each(data, function (index, value) {
                             content +=
-                                "<li class='nav-item'><a class='nav-link' href='" +
-                                path +
-                                "/" +
-                                ++index +
-                                "'>" +
+                                "<li class='nav-item'><a class='nav-link'" +
+                                " href='javascript:cerereGETProduse(" + value.id + ")' id='" + value.id + "' onclick='cerereGETProduse('" + value.id + "')'>" +
                                 value.name +
                                 "</a></li>";
                         });
@@ -31,7 +28,7 @@
                         $(content).appendTo("#zonaA");
                     })
                     .fail(function (jqxhr, textStatus, error) {
-                        var err = textStatus + ", " + error;
+                        let err = textStatus + ", " + error;
                         console.log("Request failed: " + err);
                     });
             });
@@ -40,10 +37,12 @@
         function cerereGETProduse(categoryId) {
             adresa = "http://localhost:4000/products?toothPasteCategoryId=" + categoryId;
 
+            let continutDeAfisat = '';
+
             $(document).ready(function () {
                 $.getJSON(adresa, function (raspuns) {
                     $.each(raspuns, function (indice, produs) {
-                        continutDeAfisat =
+                        continutDeAfisat +=
                             "<div class='card mb-3' style='max-width: 540px'>" +
                             "<div class='row no-gutters'>" +
                             "<div class='col-md-4'>" +
@@ -61,9 +60,8 @@
                             "</div>" +
                             "<button onclick=cerereDELETEProdus(" + produs.id + ")>Sterge</button>"
                         "</div><br>";
-
-                        $(continutDeAfisat).appendTo("#zonaB");
                     });
+                    document.getElementById("zonaB").innerHTML = continutDeAfisat;
                 });
             });
         }
@@ -76,8 +74,8 @@
                 type: "DELETE",
                 success: function (result) {
                     console.log("Stergere cu succes a produsului cu id -ul " + produsId);
-                    cerereGETProduse(6);
                     location.reload();
+                    cerereGETProduse(6);
                 }
             }
 
@@ -140,10 +138,8 @@
 </head>
 
 <body>
-<body onload="cerereGETCategorii();cerereGETProduse(6);">
-<button onclick="cerereGETCategorii()">Afiseaza categorii</button>
+<body onload="cerereGETCategorii()">
 <br/>
-<button id="6" onclick="cerereGETProduse(this.id)">apasa</button>
 <table>
     <tr>
         <th scope="col">

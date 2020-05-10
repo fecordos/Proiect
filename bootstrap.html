@@ -93,6 +93,7 @@
             let forKidsId = $("#forKids");
             let flavorId = $("#flavor");
             let priceId = $("#price");
+            let toothpasteCategory = $('#dropdownMenu2 option:selected');
 
 
             var brand = brandId.val();
@@ -101,13 +102,13 @@
             var price = priceId.val();
             var flavor = flavorId.val();
             var forKids = forKidsId.val();
-            var toothPasteCategoryId = categorieId;
+            var toothPasteCateg = toothpasteCategory.attr('id');
             var image = "null";
 
             var jsonData = {
                 brand: brand, type: type, quantity: quantity,
                 price: price, flavor: flavor, forKids: forKids,
-                toothPasteCategoryId: toothPasteCategoryId, image: image
+                toothPasteCategoryId: toothPasteCateg, image: image
             };
 
             config = {
@@ -212,6 +213,20 @@
                     id="forKids"
                     placeholder="Recomandata copiilor"
             />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <td>Categoria
+                <select id="dropdownMenu2">
+                    <option id="1">pentru albire</option>
+                    <option id="2">pentru ingrijirea gingiilor</option>
+                    <option id="3">anti-tartru</option>
+                    <option id="4">pentru dinti sensibili</option>
+                    <option id="5">pentru probleme de ortodontie</option>
+                    <option id="6">test category</option>
+                </select>
+            </td>
         </div>
     </div>
     <button type="submit" class="btn btn-primary" onmouseenter="cererePOSTProdus(6)">Trimite</button>

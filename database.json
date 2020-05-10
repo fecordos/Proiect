@@ -190,39 +190,6 @@
       "price": 29,
       "flavor": "menta",
       "forKids": false
-    },
-    {
-      "brand": "Test",
-      "type": "Test",
-      "quantity": "Test",
-      "price": "Test",
-      "flavor": "Test",
-      "forKids": "Test",
-      "toothpasteCategoryId": 6,
-      "image": "null",
-      "id": 16
-    },
-    {
-      "brand": "dsada",
-      "type": "dsada",
-      "quantity": "dsada",
-      "price": "dsada",
-      "flavor": "dsadsa",
-      "forKids": "dsa",
-      "toothpasteCategoryId": 6,
-      "image": "null",
-      "id": 17
-    },
-    {
-      "brand": "dsada",
-      "type": "d",
-      "quantity": "dasda",
-      "price": "dasda",
-      "flavor": "dassda",
-      "forKids": "dsaa",
-      "toothpasteCategoryId": 6,
-      "image": "null",
-      "id": 18
     }
   ]
 }

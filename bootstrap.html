@@ -15,6 +15,11 @@
             $(document).ready(function () {
                 $.getJSON(path)
                     .done(function (data) {
+                    
+                     $('#butonGET').on("click",function(){
+                            $('#zonaA').css("display","block");
+                        })
+                    
                         var content = "<ul class='nav flex-column'>";
 
                         $.each(data, function (index, value) {
@@ -140,11 +145,12 @@
 
 <body>
 <body onload="cerereGETCategorii()">
+        <button id="butonGET">Afișează categorii</button>
 <br/>
 <table>
     <tr>
         <th scope="col">
-            <div id="zonaA">
+           <div id="zonaA" style="display: none;">
         </th>
         </div>
 
